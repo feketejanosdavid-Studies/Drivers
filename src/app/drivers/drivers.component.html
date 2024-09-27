@@ -10,7 +10,17 @@
     </div>
 </div>
 <!-- Fejléc kiíratás vége -->
+<div class="input-group mb-3">
 
+    <button (click)="menuNyitva=!menuNyitva" class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Mindenhol</button>
+    <ul [ngbCollapse]="menuNyitva" class="dropdown-menu">
+        <li><a (click)="mezoKivalaszt('')" class="dropdown-item" href="#">Mindenhol</a></li>
+        <li *ngFor="let oszlop of oszlopok"><a (click)="mezoKivalaszt(oszlop.key)" class="dropdown-item" href="#">{{oszlop.text}}</a></li>
+    </ul>
+
+    <span class="input-group-text" id="basic-addon1">Keresés</span>
+    <input type="text" class="form-control" [(ngModel)]="keresendo">
+</div>
 
 <div  class="row mb-2 mt-2">
     <div *ngFor="let oszlop of oszlopok" class="col">
@@ -30,7 +40,7 @@
 <!-- Hozzáad gomb vége -->
 
 
-<div *ngFor="let driver of drivers" class="row mb-2 mt-2">
+<div *ngFor="let driver of drivers|search:keresendo:keresMezo" class="row mb-2 mt-2">
     <div *ngFor="let oszlop of oszlopok" class="col">
         <ng-container *ngIf="oszlop.type!='plain'; else notchange">
             <input [type]="oszlop.type" class="form-control" [(ngModel)]="driver[oszlop.key]">

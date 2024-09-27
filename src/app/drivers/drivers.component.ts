@@ -16,6 +16,10 @@ export class DriversComponent {
   ]
 
   newDriver:any={}
+  keresendo=""
+  keresMezo=""
+  menuNyitva=true
+
   constructor(private base:BaseService){
     this.base.getAll().subscribe(
       (adatok)=>this.drivers=adatok
@@ -34,4 +38,12 @@ export class DriversComponent {
   editDriver(driver:any) {
     this.base.editDriver(driver)
   }
+
+  mezoKivalaszt(key:any) {
+    console.log("Mező:", key)
+    this.menuNyitva=true
+    this.keresMezo=key
+  }
+
+
 }

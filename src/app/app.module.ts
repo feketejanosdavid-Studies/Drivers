@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './search.pipe';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     ErrorPageComponent,
     DriversComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,

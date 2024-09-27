@@ -1,0 +1,48 @@
+{{drivers|json}}
+{{newDriver|json}}
+
+<div class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        {{oszlop.text}}
+    </div>
+    <div class="col">
+        Műveletek
+    </div>
+</div>
+<!-- Fejléc kiíratás vége -->
+
+
+<div  class="row mb-2 mt-2">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        <ng-container *ngIf="oszlop.type!='plain'; else notchange">
+            <input [type]="oszlop.type" class="form-control" [(ngModel)]="newDriver[oszlop.key]">
+        </ng-container>
+        <ng-template #notchange>
+            
+        </ng-template>
+        
+        <!-- {{driver[oszlop.key]}} -->
+    </div>
+    <div class="col">
+        <button (click)="addDriver()" type="button" class="btn btn-outline-primary me-2">Hozzáad</button>
+    </div>
+</div>
+<!-- Hozzáad gomb vége -->
+
+
+<div *ngFor="let driver of drivers" class="row mb-2 mt-2">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        <ng-container *ngIf="oszlop.type!='plain'; else notchange">
+            <input [type]="oszlop.type" class="form-control" [(ngModel)]="driver[oszlop.key]">
+        </ng-container>
+        <ng-template #notchange>
+            {{driver[oszlop.key]}}
+        </ng-template>
+        
+        <!-- {{driver[oszlop.key]}} -->
+    </div>
+    <div class="col">
+        <button (click)="editDriver(driver)" type="button" class="btn btn-outline-success me-2">Szerkeszt</button>
+        <button (click)="deleteDriver(driver)" type="button" class="btn btn-outline-danger">Törlés</button>
+    </div>
+</div>
